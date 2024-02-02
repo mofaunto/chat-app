@@ -1,19 +1,29 @@
+import { useEffect } from "react";
+import useConversation from "../../zustandstore/useConversation";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 
 import { IoIosChatbubbles } from "react-icons/io";
 
 const ChatContainer = () => {
-  const noChatSelected = false;
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  //Clean up function to unmount
+  useEffect(() => {
+    return () => setSelectedConversation(null);
+  }, [setSelectedConversation]);
+
   return (
     <div className='md:min-w-[480px] flex flex-col'>
-      {noChatSelected ? (
+      {!selectedConversation ? (
         <NoChatSelected />
       ) : (
         <>
           <div className='bg-gray-600 px-4 py-2 mb-2'>
             <span className='label-text font-medium text-gray-200'>To: </span>
-            <span className='text-gray-200 font-bold'>John Doe</span>
+            <span className='text-gray-200 font-bold'>
+              {selectedConversation.fullName}
+            </span>
           </div>
 
           <Messages />
