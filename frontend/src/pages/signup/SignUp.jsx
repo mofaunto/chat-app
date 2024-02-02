@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import GenderSelect from "./GenderSelect";
+import { Link } from "react-router-dom";
+import useSignup from "../../hooks/useSignup";
 
 function SignUp() {
+  const [inputs, setInputs] = useState({
+    fullName: "",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    gender: "",
+  });
+
+  const { loading, signup } = useSignup();
+
+  const handleCheckbox = (gender) => {
+    setInputs({ ...inputs, gender });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await signup(inputs);
+  };
   return (
     <div className='flex flex-col items-center justify-center min-w-80 mx-auto lg:min-w-96'>
       <div className='w-full p-8 bg-gray-600 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-70'>
@@ -10,7 +30,7 @@ function SignUp() {
           <span className='text-green-500'> Talkie</span>
         </h1>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           <div>
             <label className='label p-2'>
               <span className='text-base label-text text-gray-300'>
@@ -21,6 +41,10 @@ function SignUp() {
               type='text'
               placeholder='ex. John Doe'
               className='w-full input input-bordered h-10'
+              value={inputs.fullName}
+              onChange={(e) =>
+                setInputs({ ...inputs, fullName: e.target.value })
+              }
             />
           </div>
           <div>
@@ -33,6 +57,10 @@ function SignUp() {
               type='text'
               placeholder='ex. johndoe'
               className='w-full input input-bordered h-10'
+              value={inputs.username}
+              onChange={(e) =>
+                setInputs({ ...inputs, username: e.target.value })
+              }
             />
           </div>
           <div>
@@ -45,6 +73,10 @@ function SignUp() {
               type='password'
               placeholder='Enter password'
               className='w-full input input-bordered h-10'
+              value={inputs.password}
+              onChange={(e) =>
+                setInputs({ ...inputs, password: e.target.value })
+              }
             />
           </div>
           <div>
@@ -57,17 +89,24 @@ function SignUp() {
               type='password'
               placeholder='Confirm password'
               className='w-full input input-bordered h-10'
+              value={inputs.confirmPassword}
+              onChange={(e) =>
+                setInputs({ ...inputs, confirmPassword: e.target.value })
+              }
             />
           </div>
 
-          <GenderSelect />
+          <GenderSelect
+            onCheckboxChange={handleCheckbox}
+            selectedGender={inputs.gender}
+          />
 
-          <a
-            href='#'
+          <Link
+            to='/login'
             className='text-gray-300 text-sm hover:underline hover:text-green-500 mt-4 inline-block'
           >
             Already have an account?
-          </a>
+          </Link>
           <div>
             <button className='btn btn-block btn-md mt-4 hover:bg-green-500 hover:text-white'>
               Sign Up
