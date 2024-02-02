@@ -16,7 +16,7 @@ const Chat = ({ chat, lastIndex, emoji }) => {
       >
         <div className='avatar online'>
           <div className='w-12 rounded-full'>
-            <img src={chat.profilePicture} alt='User avatar' />
+            <img src={chat.profilePic} alt='User avatar' />
           </div>
         </div>
 

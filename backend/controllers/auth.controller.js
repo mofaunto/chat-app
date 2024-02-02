@@ -29,7 +29,7 @@ export const signup = async (req, res) => {
       username,
       password: hashedPassword,
       gender,
-      profilePicture: gender === "male" ? maleProfilePic : femaleProfilePic,
+      profilePic: gender === "male" ? maleProfilePic : femaleProfilePic,
     });
 
     if (newUser) {
@@ -42,7 +42,7 @@ export const signup = async (req, res) => {
         _id: newUser._id,
         fullName: newUser.fullName,
         username: newUser.username,
-        profilePic: newUser.profilePicture,
+        profilePic: newUser.profilePic,
       });
     } else {
       res.status(400).json({ error: "Invalid user data" });
