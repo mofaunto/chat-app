@@ -4,6 +4,7 @@ import MessageInput from "./MessageInput";
 import Messages from "./Messages";
 
 import { IoIosChatbubbles } from "react-icons/io";
+import { useAuthContext } from "../../context/AuthContext";
 
 const ChatContainer = () => {
   const { selectedConversation, setSelectedConversation } = useConversation();
@@ -37,10 +38,11 @@ const ChatContainer = () => {
 export default ChatContainer;
 
 const NoChatSelected = () => {
+  const { authUser } = useAuthContext();
   return (
     <div className='flex items-center justify-center w-full h-full'>
       <div className='px-4 text-center items-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col'>
-        <p>Welcome 👋 John Doe</p>
+        <p>Welcome 👋 {authUser.fullName}</p>
         <p>Select a chat to start messaging</p>
         <IoIosChatbubbles className='text-3xl md:text-6xl text-center mt-4' />
       </div>

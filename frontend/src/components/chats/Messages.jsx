@@ -1,11 +1,13 @@
 import Message from "./Message";
 import useGetMessages from "../../hooks/useGetMessages";
 import MessageSkeleton from "../skeletons/MessageSkeleton";
+import useListenMessages from "../../hooks/useListenMessages";
 import { GiTumbleweed } from "react-icons/gi";
 import { useEffect, useRef } from "react";
 
 const Messages = () => {
   const { loading, messages } = useGetMessages();
+  useListenMessages();
 
   const lastMessageRef = useRef();
   useEffect(() => {
