@@ -15,7 +15,7 @@ const ChatContainer = () => {
   }, [setSelectedConversation]);
 
   return (
-    <div className='md:min-w-[480px] flex flex-col'>
+    <div className='flex flex-col h-full md:min-w-[480px]'>
       {!selectedConversation ? (
         <NoChatSelected />
       ) : (
@@ -40,11 +40,11 @@ export default ChatContainer;
 const NoChatSelected = () => {
   const { authUser } = useAuthContext();
   return (
-    <div className='flex items-center justify-center w-full h-full'>
+    <div className='flex flex-col items-center justify-center w-full h-full my-24 md:my-40'>
       <div className='px-4 text-center items-center sm:text-lg md:text-xl text-gray-200 font-semibold flex flex-col'>
         <p>Welcome 👋 {authUser.fullName}</p>
         <p>Select a chat to start messaging</p>
-        <IoIosChatbubbles className='text-3xl md:text-6xl text-center mt-4' />
+        <IoIosChatbubbles className='text-3xl md:text-6xl text-center mt-4 animate-wiggle animate-infinite animate-duration-[2000ms]' />
       </div>
     </div>
   );

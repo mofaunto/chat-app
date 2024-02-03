@@ -13,12 +13,12 @@ const MessageInput = () => {
     setMessage("");
   };
   return (
-    <form className='px-4 my-4' onSubmit={handleSubmit}>
+    <form className='px-4 my-4 ' onSubmit={handleSubmit}>
       <div className='w-full relative'>
         <input
           type='text'
           placeholder='Enter your message'
-          className='border text-sm rounded-lg block w-full p-2 bg-gray-700 border-gray-600 text-white'
+          className='border text-sm rounded-lg block w-full p-4 bg-gray-700 border-gray-600 text-white lg:p-2'
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
@@ -29,7 +29,7 @@ const MessageInput = () => {
           {loading ? (
             <div className='loading loading-spinner'></div>
           ) : (
-            <IoIosSend className='text-green-500 w-5 h-5' />
+            <IoIosSend className='text-green-500 w-6 h-6 lg:w-4 lg:h-4' />
           )}
         </button>
       </div>

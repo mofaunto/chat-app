@@ -25,7 +25,7 @@ const Chat = ({ chat, lastIndex, emoji }) => {
         </div>
 
         <div className='flex flex-col flex-1'>
-          <div className='hidden lg:flex lg:gap-4 lg:justify-between'>
+          <div className='hidden md:flex md:items-center md:gap-2 md:mx-2 lg:flex lg:gap-4 lg:justify-between'>
             <p className='font-bold text-gray-200'>{chat.fullName}</p>
             <span className='text-xl'>{emoji}</span>
           </div>
